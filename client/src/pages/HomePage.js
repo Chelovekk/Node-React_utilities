@@ -4,20 +4,34 @@ import { AuthContext } from '../context/AuthContext'
 import useHttp from '../hooks/http.hook'
 import LinksList from '../components/LinksList'
 import { Carousel , Row, Card, Col, Container, Button, InputGroup, FormControl} from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 
 export const HomePage = () => {
     const {loading, request} = useHttp()
     const {token} = useContext(AuthContext)
     const [email, setEmail] = useState('')
-    
+    const history = useHistory()
+
     const emailHandler = event =>{
         setEmail(event.target.value)
     }
-    const sendEmailHandler = () =>{
-        console.log(email)
-    }
+    const sendEmailHandler = async() =>{
+        try{
+        await request('api/home/email','POST', {email:email},{
+            Authorization: `Bearer ${token}` 
+        })
+        }catch(e){
 
-    
+        }
+    }
+    const authorizationHandler = () =>{
+        // if(localStorage.getItem('userData')){
+        //     history.push('/create')
+        // } else{
+        //     history.push('/auth')
+        // }
+        history.push('auth')
+    }
 
     if(loading){
         return <Loader />
@@ -56,48 +70,48 @@ export const HomePage = () => {
                 <Col className="mt-1">   
                         <Card style={{ width: '100%' }}>
                             <Card.Body>
-                                <Card.Title ><a href="#">Подключить газ</a></Card.Title>
+                                <Card.Title >Подключить газ</Card.Title>
                                 <Card.Text>Как стать клиентом</Card.Text>
                                 <Card.Text>Присоединиться к газовым сетям</Card.Text>
                                 <Card.Text>Проложить сети</Card.Text>
-                                <Card.Link href="#">Card Link</Card.Link>
-                                <Card.Link href="#">Another Link</Card.Link>
+                                <Card.Link >Card Link</Card.Link>
+                                <Card.Link >Another Link</Card.Link>
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col className="mt-1">   
                         <Card style={{ width: '100%' }}>
                             <Card.Body>
-                                <Card.Title ><a href="#">Подключить газ</a></Card.Title>
+                                <Card.Title >Подключить газ</Card.Title>
                                 <Card.Text>Как стать клиентом</Card.Text>
                                 <Card.Text>Присоединиться к газовым сетям</Card.Text>
                                 <Card.Text>Проложить сети</Card.Text>
-                                <Card.Link href="#">Card Link</Card.Link>
-                                <Card.Link href="#">Another Link</Card.Link>
+                                <Card.Link >Card Link</Card.Link>
+                                <Card.Link >Another Link</Card.Link>
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col className="mt-1">   
                         <Card style={{ width: '100%' }}>
                             <Card.Body>
-                                <Card.Title ><a href="#">Подключить газ</a></Card.Title>
+                                <Card.Title >Подключить газ</Card.Title>
                                 <Card.Text>Как стать клиентом</Card.Text>
                                 <Card.Text>Присоединиться к газовым сетям</Card.Text>
                                 <Card.Text>Проложить сети</Card.Text>
-                                <Card.Link href="#">Card Link</Card.Link>
-                                <Card.Link href="#">Another Link</Card.Link>
+                                <Card.Link >Card Link</Card.Link>
+                                <Card.Link >Another Link</Card.Link>
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col className="mt-1">   
                         <Card style={{ width: '100%' }}>
                             <Card.Body>
-                                <Card.Title ><a href="#">Подключить газ</a></Card.Title>
+                                <Card.Title >Подключить газ</Card.Title>
                                 <Card.Text>Как стать клиентом</Card.Text>
                                 <Card.Text>Присоединиться к газовым сетям</Card.Text>
                                 <Card.Text>Проложить сети</Card.Text>
-                                <Card.Link href="#">Card Link</Card.Link>
-                                <Card.Link href="#">Another Link</Card.Link>
+                                <Card.Link >Card Link</Card.Link>
+                                <Card.Link >Another Link</Card.Link>
                             </Card.Body>
                         </Card>
                     </Col> 
@@ -105,10 +119,10 @@ export const HomePage = () => {
                 </Col>
                 <Col>
                     <Container fluid>
-                        <Button variant="outline-primary" className="mt-1" style={{height : "100px"}}block>Authorization</Button>
+                        <Button variant="outline-primary" className="mt-1" onClick={authorizationHandler} style={{height : "100px"}}block>Authorization</Button>
                         <Card className="mt-5" style={{ width: '100%'}}>
                             <Card.Body  style={{margin:"auto"}} >
-                                <Card.Title ><a href="#">Подписаться на рассылку</a></Card.Title>
+                                <Card.Title >Подписаться на рассылку</Card.Title>
                                 <InputGroup className="mb-3">
                                     <InputGroup.Prepend>
                                     </InputGroup.Prepend>

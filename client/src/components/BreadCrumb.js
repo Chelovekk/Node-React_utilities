@@ -9,9 +9,8 @@ export default function CustomBreadcrumb (){
     var links=[];
 
     const ways = [
-        {path:'/home', number:1},
-        {path:'/products', number:1},
-        {number:2}
+        {path:'/home'},
+        {path:'/products'},
         
     ]
 

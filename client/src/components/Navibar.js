@@ -26,7 +26,7 @@ export default function Navibar() {
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
                 <Nav.Link ><NavLink to="/">Home</NavLink></Nav.Link>
-                <Nav.Link ><NavLink to="/create">Create</NavLink></Nav.Link>
+                <Nav.Link ><NavLink to="/cabinet">Cabinet</NavLink></Nav.Link>
                     <a  onClick={logoutHandler}><Nav.Link>logout</Nav.Link></a>
                 </Nav>
                 <Nav>

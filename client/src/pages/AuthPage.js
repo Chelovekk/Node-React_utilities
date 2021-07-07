@@ -4,8 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {  Button, Form} from 'react-bootstrap'
 import useHttp from '../hooks/http.hook'
 import { AuthContext } from '../context/AuthContext'
+import { useHistory } from 'react-router-dom'
 
 export const AuthPage = () => {
+    const history = useHistory()
     const auth = useContext(AuthContext)
     const {loading, error, request} = useHttp()
     const [form, setForm] = useState({
@@ -30,7 +32,9 @@ export const AuthPage = () => {
     const loginHandler = async()=>{
         try{
             const data = await request('/api/auth/login', 'POST', {...form})
-            auth.login(data.token, data.userId)
+            if(auth.login(data.token, data.userId)){
+                history.push('cabinet')
+            }
         }catch(e){
 
         }
@@ -38,7 +42,6 @@ export const AuthPage = () => {
     return(
     
         <div>
-            <h1 >AuthPage</h1>
             <div className="container-fluid w-25 p-3">
             <Form>
                 <Form.Group controlId="formBasicEmail">

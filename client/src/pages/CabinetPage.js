@@ -7,14 +7,14 @@ import { useHistory } from 'react-router-dom'
 import TableCard from '../components/TableCard'
 import Loader from '../components/Loader'
 
-export const CreatePage = () => {
+export const CabinetPage = () => {
     const [counterData, setCounterData]  = useState('')
     const [info, setInfo] = useState(null)
     const {request, loading} = useHttp()
     const auth = useContext(AuthContext)
     const sumbitHandler = async event => {
             try{
-                const data = await request('/api/link/generate', 'POST', {counter_data: counterData}, {
+                const data = await request('/api/cabinet/generate', 'POST', {counter_data: counterData}, {
                     Authorization: `Bearer ${auth.token}` 
                 })
                 // history.push(`/detail/${data.link._id}`)
@@ -24,7 +24,7 @@ export const CreatePage = () => {
     }
     const getInfo = useCallback(async () => {
         try{
-            const fetched = await request('/api/link', 'GET', null, {
+            const fetched = await request('/api/cabinet', 'GET', null, {
                 Authorization: `Bearer ${auth.token}`     
             })
             setInfo(fetched)
