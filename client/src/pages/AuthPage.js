@@ -1,12 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {  Button, Form} from 'react-bootstrap'
+import {  Button, Form, Modal } from 'react-bootstrap'
 import useHttp from '../hooks/http.hook'
 import { AuthContext } from '../context/AuthContext'
 import { useHistory } from 'react-router-dom'
 
 export const AuthPage = () => {
+
+    
+    const [show, setShow] = useState(false)
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const history = useHistory()
     const auth = useContext(AuthContext)
     const {loading, error, request} = useHttp()
@@ -14,6 +20,7 @@ export const AuthPage = () => {
         email:'',
         password:''
     })
+    
     useEffect(()=>{
         // alert(error)
     }, [error])
@@ -23,10 +30,9 @@ export const AuthPage = () => {
     const registerHandler = async()=>{
         try{
             const data = await request('/api/auth/register', 'POST', {...form})
-            console.log(...form)
-
+            console.log(data)
         }catch(e){
-
+            handleShow()
         }
     }
     const loginHandler = async()=>{
@@ -36,12 +42,15 @@ export const AuthPage = () => {
                 history.push('cabinet')
             }
         }catch(e){
+            handleShow()
 
         }
     }
+  
     return(
     
-        <div>
+        <>
+        
             <div className="container-fluid w-25 p-3">
             <Form>
                 <Form.Group controlId="formBasicEmail">
@@ -67,7 +76,19 @@ export const AuthPage = () => {
                 </Button>
              </Form>
             </div>
-        </div>
+            <Modal show={show} onHide={handleClose} animation={false}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Неверные данные</Modal.Body>
+
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Close
+                </Button>
+                </Modal.Footer>
+          </Modal>
+        </>
 
         
     )

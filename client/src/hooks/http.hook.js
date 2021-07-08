@@ -14,7 +14,7 @@ export default function useHttp() {
             const respons = await fetch(url, {
                 method, body, headers
             })
-            console.log(respons)
+            // console.log(respons)
             const data = await respons.json()
             if(!respons.ok){
                 throw new Error(data.messege || 'Chto-to ne tak')
