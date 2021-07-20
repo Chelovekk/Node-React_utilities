@@ -23,7 +23,7 @@ function App() {
     }}>
       <Router>
       <Navibar/>
-      <CustomBreadcrumb />
+      {/* <CustomBreadcrumb /> */}
         {isAuthenticated}
           {routes}
         </Router>

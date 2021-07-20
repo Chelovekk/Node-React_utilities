@@ -1,3 +1,7 @@
 /* .carousel-item img {
     height: 300px;
 } */
+body, html{
+    height: 100vh;
+    margin: 0   ;
+}
