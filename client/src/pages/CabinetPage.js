@@ -11,11 +11,13 @@ export const CabinetPage = () => {
     const [info, setInfo] = useState(null)
     const {request, loading} = useHttp()
     const auth = useContext(AuthContext)
-    const [sectionStates, setSectionStates] = useState(['primary','secondary','secondary','secondary']);
-    const buttonHandler = (event) => {
-        let states = ['primary','secondary','secondary','secondary']
-        console.log(event.number)
-        setSectionStates(states)
+    const [sectionStates, setSectionStates] = useState(['secondary','secondary','secondary','secondary']);
+    
+    const buttonHandler = (n) => {
+        let mass = ['secondary','secondary','secondary','secondary']
+        mass[n] = 'primary';
+        setSectionStates(mass)
+        // console.log(e)
     }
     const sumbitHandler = async event => {
             try{
@@ -43,12 +45,11 @@ export const CabinetPage = () => {
     if (loading) {
         return <Loader />
       }
-
     return(
         <Container>
             <Row  className="mt-5" >
                 <Col >
-                    <Button variant={sectionStates[2]} number = '0' onClick = {buttonHandler}>
+                    <Button variant={sectionStates[0]} onClick={(e) => { buttonHandler(0)}}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
                         <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
                     </svg>
@@ -56,7 +57,7 @@ export const CabinetPage = () => {
                     </Button>
                 </Col>
                 <Col  >
-                <Button variant={sectionStates[1]} number = '1' onClick = {buttonHandler}>
+                <Button variant={sectionStates[1]} onClick={(e) => { buttonHandler(1)}}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-clipboard-plus" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
                     <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
@@ -67,7 +68,7 @@ export const CabinetPage = () => {
 
                 </Col>
                 <Col  >
-                <Button variant={sectionStates[2]} number = '2' onClick = {buttonHandler}>
+                <Button variant={sectionStates[2]} onClick={(e) => { buttonHandler(2)}}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
                         <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z"/>
                     </svg>
@@ -75,7 +76,7 @@ export const CabinetPage = () => {
                 </Button>
                 </Col>
                 <Col  >
-                <Button variant={sectionStates[3]} number = '3' onClick = {buttonHandler}>
+                <Button variant={sectionStates[3]} onClick={(e) => { buttonHandler(3)}}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
                         <path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z"/>
                         <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2zM4 1v14H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h2zm1 0h9a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5V1z"/>
@@ -102,3 +103,4 @@ export const CabinetPage = () => {
     </Container>
         )
 }
+

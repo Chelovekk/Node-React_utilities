@@ -3,7 +3,6 @@ import {Container, Table, Button} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function TableCard({ info }) {
-    console.log(info)
     const [count, setCount] = useState(0);
 
     
